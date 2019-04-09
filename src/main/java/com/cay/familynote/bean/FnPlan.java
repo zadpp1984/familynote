@@ -1,11 +1,14 @@
 package com.cay.familynote.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "FnPlan")
@@ -20,11 +23,17 @@ public class FnPlan {
     @Column(nullable = false)
     Long groupid;
 
-    @Column(nullable = false)
+    @Column
     Long createrid;
 
     @Column
+    String creatername;
+
+    @Column
     Long executerid;
+
+    @Column
+    String executername;
 
     @Column(nullable = false)
     String title;
@@ -38,10 +47,14 @@ public class FnPlan {
     @Column
     Boolean remind;
 
-    //    @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:SS")
     @Column
-    Time createtimestamp;
+    Timestamp createtimestamp;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:SS")
+    @Column
+    Timestamp remindtimestamp;
 
     @Column
-    Time remindtimestamp;
+    String state;
 }
